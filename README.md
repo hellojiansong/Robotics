@@ -1,4 +1,11 @@
-# Rover RL Final Project
+# Rover RL Project
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?style=flat&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![MuJoCo](https://img.shields.io/badge/Simulation-MuJoCo-blue?style=flat)](https://mujoco.org/)
+[![RL Algorithm](https://img.shields.io/badge/RL-PPO-brightgreen?style=flat)](https://arxiv.org/abs/1707.06347)
+[![Curriculum](https://img.shields.io/badge/Curriculum-Adversarial-red?style=flat)](#)
+[![Code Style](https://img.shields.io/badge/Code%20Style-Black-000000?style=flat&logo=black)](https://github.com/psf/black)
 
 This repository trains a MuJoCo rover policy using PPO and records dual-camera rollouts as GIFs.
 
