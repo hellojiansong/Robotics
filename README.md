@@ -7,22 +7,22 @@
 [![Curriculum](https://img.shields.io/badge/Curriculum-Adversarial-red?style=flat)](#)
 [![Video Demo](https://img.shields.io/badge/Demo-Google%20Drive-yellow?logo=googledrive)](https://drive.google.com/file/d/1UCdMJtC9LAvuQ25bMk0Q1MgiMB0un2CY/view?usp=sharing)
 
-This repository trains a four-wheeled rover policy in MuJoCo using Proximal Policy Optimization (PPO)[cite: 1]. The training environment features an asymmetric band-controller adversary that dynamically scales procedural terrain difficulty based on recent success rates and empirical failure modes[cite: 1].
+This repository trains a four-wheeled rover policy in MuJoCo using Proximal Policy Optimization (PPO). The training environment features an asymmetric band-controller adversary that dynamically scales procedural terrain difficulty based on recent success rates and empirical failure modes.
 
 ---
 
 ## 1. System Overview & Results
 
-- **Control & Observation**: 4-wheel skid-steer velocity control with a 32-dimensional observation vector (kinematics, orientation quaternion, goal-relative vectors, and 9 forward-fan raycasts)[cite: 1].
-- **Adversarial Curriculum**: A deterministic controller tracks a 50-episode sliding window, scaling scalar difficulty up ($+0.005$ if win rate $> 0.65$) or down ($-0.010$ if $< 0.30$) while biasing features toward vertical obstacles or lateral detours[cite: 1].
-- **Procedural Heightfield**: Multi-band sinusoidal elevation combined with craters, mesas, and edge tapering near spawn and goal areas[cite: 1].
+- **Control & Observation**: 4-wheel skid-steer velocity control with a 32-dimensional observation vector (kinematics, orientation quaternion, goal-relative vectors, and 9 forward-fan raycasts).
+- **Adversarial Curriculum**: A deterministic controller tracks a 50-episode sliding window, scaling scalar difficulty up ($+0.005$ if win rate $> 0.65$) or down ($-0.010$ if $< 0.30$) while biasing features toward vertical obstacles or lateral detours.
+- **Procedural Heightfield**: Multi-band sinusoidal elevation combined with craters, mesas, and edge tapering near spawn and goal areas.
 
 ### Benchmark Evaluation (30 Seeds)
 
 | Terrain Setting | Difficulty | Goal Success Rate | Behavior |
 | :--- | :---: | :---: | :--- |
-| **Flat Ground Baseline** | $0.0$ | **30 / 30 (100%)** | Direct, smooth trajectories toward targets[cite: 1]. |
-| **Midpoint Rocky Terrain** | $0.5$ | **11 / 30 (36.7%)** | Aligns with the adversary's target equilibrium band ($30\% \sim 65\%$)[cite: 1]. |
+| **Flat Ground Baseline** | $0.0$ | **30 / 30 (100%)** | Direct, smooth trajectories toward targets. |
+| **Midpoint Rocky Terrain** | $0.5$ | **11 / 30 (36.7%)** | Aligns with the adversary's target equilibrium band ($30\% \sim 65\%$). |
 
 ---
 
@@ -108,4 +108,4 @@ python record.py --flat --steps 1200 --fps 20
 ## 5. Notes & Configurations
 
 - **Center-of-Gravity (CoG) Shift**: In `training/env_wrapper.py` (Line 12), change `"robot"` to `"robot_front"` or `"robot_rear"` to train/evaluate policies under shifted mass distributions.
-- **Coordinate Conventions**: The chassis longitudinal axis is inverted in the MJCF model; the wrapper explicitly negates the forward velocity component to align world and body directions[cite: 1].
+- **Coordinate Conventions**: The chassis longitudinal axis is inverted in the MJCF model; the wrapper explicitly negates the forward velocity component to align world and body directions.
